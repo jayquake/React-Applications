@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="btn-group btn-group-toggle m-auto condition">
+        <input type="button" class="panel panel-heading ml-2  btn-outline-success lead text white mild   btn "
+               onclick="location.href={% url 'information' %};" value="Mild"/>
+        <input type="button" class="panel panel-heading btn-outline-warning lead text white  moderate  btn " checked
+               onclick="location.href={% url 'information' %};" value="Moderate"/>
+        <input type="button" class="panel panel-heading btn-outline-danger lead text white  severe  btn "
+               onclick="location.href={% url 'information' %};" value="Severe"/>
+    </div>
+    <br>
+    <div class="btn-group btn-group-toggle m-auto">
+        <input type="button" class="panel panel-heading ml-4  btn-outline-secondary lead text white tests  btn "
+               onclick="location.href='/patients';" value="Monitoring"/>
+        <input type="button" class="panel panel-heading  btn-outline-secondary lead text white tests  btn "
+               onclick="location.href='/patients';" value="Labs"/>
+        <input type="button" class="panel panel-heading  btn-outline-secondary lead text white tests  btn "
+               onclick="location.href='/patients';" value="Imaging"/>
+        <input type="button" class="panel panel-heading  btn-outline-secondary lead text white tests  btn "
+               onclick="location.href='/patients';" value="Treatment"/>
+        <input type="button" class="panel panel-heading  btn-outline-secondary lead text white tests  btn "
+               onclick="location.href='/patients';" value="Admit"/>
+    </div>
+
+{% endblock %}

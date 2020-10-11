@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% include 'css.html' %}
+
+{% block title %}
+    <title>Base Assessment</title>
+{% endblock %}
+
+{% block content %}
+
+    {# REMINDERS #}
+    <div class="card w-100 h-25 reminder column" style="border-color: transparent" onload="openTab('b1');">
+        <fieldset class="lead">
+            <legend class="border-bottom text-secondary">General Reminders</legend>
+            <ul>
+                <li class="small text-secondary">Avoid Stethoscope</li>
+                <li class="small text-secondary">Wear PPE</li>
+                <li class="small text-secondary">Patient Mask</li>
+            </ul>
+        </fieldset>
+        <div class="btn btn-transparent text-secondary btn-outline-dark  bg-white rounded closebtn"
+             onclick="this.parentElement.style.display='none'">Got it: Hide From Now On
+        </div>
+    </div>
+
+    {# NEW PATIENT SECTION #}
+    <div class=" card w-100 h-25 column" style="border-color: transparent">
+        <fieldset class="lead">
+            <legend class=" text-secondary ml-auto">New Patient</legend>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class=" text-secondary muted small ml-3 ">
+                {{ form|crispy }}
+            </fieldset>
+
+        </form>
+            </fieldset>
+    </div>
+
+    {#  ASSESSMENT SECTION  #}
+    <div class="card w-100 h-25 column assessment" style="border-color: transparent">
+        <fieldset class="lead">
+            <legend class=" text-secondary">Assessment</legend>
+
+            <div class="ml-auto form-group text-secondary small"> Severe Respritory Distress Or Shock
+                <div class="btn-group btn-group-toggle float-right rounded small column" data-toggle="buttons">
+                    <label class="btn btn-sm btn-white  rounded btn-outline-primary active">
+                        <input type="radio" name="options" id="option2" checked> No
+                    </label>
+                    <label class="btn btn-sm btn-white btn-outline-primary">
+                        <input type="radio" name="options" id="option3"> Yes
+                    </label>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="ml-auto form-group text-secondary small"> Appearance
+                <div class="btn-group btn-group-toggle float-right rounded small column" data-toggle="buttons">
+                    <label class="btn btn-sm rounded btn-white btn-outline-primary active">
+                        <input type="radio" name="options" id="option1"> Well
+                    </label>
+                    <label class="btn btn-sm btn-white btn-outline-primary">
+                        <input type="radio" name="options" id="option2" checked> Borderline
+                    </label>
+                    <label class="btn btn-sm btn-white btn-outline-primary">
+                        <input type="radio" name="options" id="option3"> Unwell
+                    </label>
+                </div>
+            </div>
+            <br>
+            {#      RISKS      #}
+            <div class="ml-auto form-group text-secondary small"> Risk Factors
+                <div class="btn-group btn-group-toggle float-right rounded small column" data-toggle="buttons">
+                    <label class="btn btn-sm btn-white  rounded btn-outline-primary active">
+                        <input type="radio" name="options" id="option2" checked> No
+                    </label>
+                    <label class="btn btn-sm btn-white btn-outline-primary">
+                        <input type="radio" name="options" id="option3"> Yes
+                    </label>
+                </div>
+            </div>
+            <br>
+            {#  O2 SECTION #}
+            <div class="ml-auto form-group text-secondary small"> O2 Saturation
+                <div class="btn-group btn-group-toggle float-right rounded small column" data-toggle="buttons">
+                    <label class="btn btn-sm btn-white  rounded btn-outline-primary active">
+                        <input type="radio" name="options" id="option2" checked> < 92%
+                    </label>
+                    <label class="btn btn-sm btn-white btn-outline-primary">
+                        <input type="radio" name="options" id="option3"> > 92%
+                    </label>
+                </div>
+            </div>
+            <br>
+
+            {#    RESPIRATORY SECTION #}
+            <div class="respiration">
+                <div class="ml-auto form-group text-secondary small"> Respiratory Rate
+                    <div class="btn-group btn-group-toggle float-right rounded small column" data-toggle="buttons">
+                        <label class="btn btn-sm btn-white  rounded btn-outline-primary active">
+                            <input type="radio" name="options" id="option2" checked> < 22
+                        </label>
+                        <label class="btn btn-sm btn-white btn-outline-primary">
+                            <input type="radio" name="options" id="option3"> > 22
+                        </label>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </fieldset>
+    </div>
+
+
+
+    {# JAVASCRIPT #}
+    <script>
+        function openTab(tabName) {
+            var i, x;
+            x = document.getElementsByClassName("containerTab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "none";
+        }
+    </script>
+
+
+
+
+    {#    #}
+    {#<footer class="footer">#}
+    {#      <div class="container">#}
+    {#        <span class="text-muted">#}
+    {#        </span>#}
+    {#      </div>#}
+    {#    </footer>#}
+    {#<div class="clearfix container" style="position: absolute; height: border-box; box-sizing: border-box">#}
+    {##}
+    {##}
+    {#<svg class="bi bi-arrow-left-short" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
+    {#  <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>#}
+    {#  <path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>#}
+    {#</svg>#}
+    {#    <button type="button" class="btn btn-default" style="position: center; height: 3em; width: 3em; border-radius: 50%;  background-color: darkgoldenrod; "><img src="media/flowchart.png" style=" background-position: center; background-repeat: no-repeat; background-size: cover;"></button>#}
+    {##}
+    {##}
+    {##}
+    {#    <svg class="bi bi-arrow-right-short float-right" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" >#}
+    {#  <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L10.793 8 8.146 5.354a.5.5 0 010-.708z" clip-rule="evenodd"/>#}
+    {#  <path fill-rule="evenodd" d="M4 8a.5.5 0 01.5-.5H11a.5.5 0 010 1H4.5A.5.5 0 014 8z" clip-rule="evenodd"/>#}
+    {#</svg>#}
+    {# #}
+    {##}
+    {#</div>#}
+
+{% endblock %}
